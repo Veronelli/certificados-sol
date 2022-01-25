@@ -1,0 +1,694 @@
+{
+  "contractName": "Certificado",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Certificado.sol\":\"Certificado\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Certificado.sol\":{\"keccak256\":\"0x7a89311626284793e0d71e80a7e93a84c0e99f4a94dc26fea3491998535baf27\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fa8d547aab0b5ff6686b82d643862445092e845e106462a4ed4e99b7f84025fc\",\"dweb:/ipfs/QmZH9zgnFhe1X8XnTH6V3xS5gY7WRVLm9NYJ4mM946cpkT\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220c345ac0e02c8abaf25bd1fcdd04b05ac5466ad3a7331e86e6962219cc2ef56ee64736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220c345ac0e02c8abaf25bd1fcdd04b05ac5466ad3a7331e86e6962219cc2ef56ee64736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "66:450:1:-:0;;;498:16;;;;;;;;;;66:450;;;;;;",
+  "deployedSourceMap": "66:450:1:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract Certificado {\n    enum TipoCertificado {\n        Ingenieria,\n        Doctorado,\n        Master,\n        Comun,\n        Tecnico,\n        Licenciatura,\n        Abogacia\n    }\n\n    struct structCertificado {\n        string titutlo;\n        bool verificado;\n        TipoCertificado tipoCertificado;\n        bytes32 propietario;\n        string fechaEmision;\n        address academia;\n        bytes32 certificadoSeed;\n    }\n\n    constructor() {}\n}\n",
+  "sourcePath": "/home/facu/Documents/Works/Solidity/certificados/contracts/Certificado.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Certificado.sol",
+    "exportedSymbols": {
+      "Certificado": [
+        83
+      ]
+    },
+    "id": 84,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 54,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 83,
+        "linearizedBaseContracts": [
+          83
+        ],
+        "name": "Certificado",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Certificado.TipoCertificado",
+            "id": 62,
+            "members": [
+              {
+                "id": 55,
+                "name": "Ingenieria",
+                "nodeType": "EnumValue",
+                "src": "124:10:1"
+              },
+              {
+                "id": 56,
+                "name": "Doctorado",
+                "nodeType": "EnumValue",
+                "src": "144:9:1"
+              },
+              {
+                "id": 57,
+                "name": "Master",
+                "nodeType": "EnumValue",
+                "src": "163:6:1"
+              },
+              {
+                "id": 58,
+                "name": "Comun",
+                "nodeType": "EnumValue",
+                "src": "179:5:1"
+              },
+              {
+                "id": 59,
+                "name": "Tecnico",
+                "nodeType": "EnumValue",
+                "src": "194:7:1"
+              },
+              {
+                "id": 60,
+                "name": "Licenciatura",
+                "nodeType": "EnumValue",
+                "src": "211:12:1"
+              },
+              {
+                "id": 61,
+                "name": "Abogacia",
+                "nodeType": "EnumValue",
+                "src": "233:8:1"
+              }
+            ],
+            "name": "TipoCertificado",
+            "nodeType": "EnumDefinition",
+            "src": "93:154:1"
+          },
+          {
+            "canonicalName": "Certificado.structCertificado",
+            "id": 78,
+            "members": [
+              {
+                "constant": false,
+                "id": 64,
+                "mutability": "mutable",
+                "name": "titutlo",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "288:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "288:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "mutability": "mutable",
+                "name": "verificado",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "312:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "312:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 69,
+                "mutability": "mutable",
+                "name": "tipoCertificado",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "337:31:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_TipoCertificado_$62",
+                  "typeString": "enum Certificado.TipoCertificado"
+                },
+                "typeName": {
+                  "id": 68,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 67,
+                    "name": "TipoCertificado",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 62,
+                    "src": "337:15:1"
+                  },
+                  "referencedDeclaration": 62,
+                  "src": "337:15:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TipoCertificado_$62",
+                    "typeString": "enum Certificado.TipoCertificado"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "mutability": "mutable",
+                "name": "propietario",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "378:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "378:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 73,
+                "mutability": "mutable",
+                "name": "fechaEmision",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "407:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 72,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "407:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 75,
+                "mutability": "mutable",
+                "name": "academia",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "436:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 74,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "436:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "mutability": "mutable",
+                "name": "certificadoSeed",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "462:23:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "462:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "structCertificado",
+            "nodeType": "StructDefinition",
+            "scope": 83,
+            "src": "253:239:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 81,
+              "nodeType": "Block",
+              "src": "512:2:1",
+              "statements": []
+            },
+            "id": 82,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 79,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "509:2:1"
+            },
+            "returnParameters": {
+              "id": 80,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "512:0:1"
+            },
+            "scope": 83,
+            "src": "498:16:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 84,
+        "src": "66:450:1"
+      }
+    ],
+    "src": "32:485:1"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/Certificado.sol",
+    "exportedSymbols": {
+      "Certificado": [
+        83
+      ]
+    },
+    "id": 84,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 54,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 83,
+        "linearizedBaseContracts": [
+          83
+        ],
+        "name": "Certificado",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Certificado.TipoCertificado",
+            "id": 62,
+            "members": [
+              {
+                "id": 55,
+                "name": "Ingenieria",
+                "nodeType": "EnumValue",
+                "src": "124:10:1"
+              },
+              {
+                "id": 56,
+                "name": "Doctorado",
+                "nodeType": "EnumValue",
+                "src": "144:9:1"
+              },
+              {
+                "id": 57,
+                "name": "Master",
+                "nodeType": "EnumValue",
+                "src": "163:6:1"
+              },
+              {
+                "id": 58,
+                "name": "Comun",
+                "nodeType": "EnumValue",
+                "src": "179:5:1"
+              },
+              {
+                "id": 59,
+                "name": "Tecnico",
+                "nodeType": "EnumValue",
+                "src": "194:7:1"
+              },
+              {
+                "id": 60,
+                "name": "Licenciatura",
+                "nodeType": "EnumValue",
+                "src": "211:12:1"
+              },
+              {
+                "id": 61,
+                "name": "Abogacia",
+                "nodeType": "EnumValue",
+                "src": "233:8:1"
+              }
+            ],
+            "name": "TipoCertificado",
+            "nodeType": "EnumDefinition",
+            "src": "93:154:1"
+          },
+          {
+            "canonicalName": "Certificado.structCertificado",
+            "id": 78,
+            "members": [
+              {
+                "constant": false,
+                "id": 64,
+                "mutability": "mutable",
+                "name": "titutlo",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "288:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "288:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "mutability": "mutable",
+                "name": "verificado",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "312:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "312:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 69,
+                "mutability": "mutable",
+                "name": "tipoCertificado",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "337:31:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_TipoCertificado_$62",
+                  "typeString": "enum Certificado.TipoCertificado"
+                },
+                "typeName": {
+                  "id": 68,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 67,
+                    "name": "TipoCertificado",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 62,
+                    "src": "337:15:1"
+                  },
+                  "referencedDeclaration": 62,
+                  "src": "337:15:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TipoCertificado_$62",
+                    "typeString": "enum Certificado.TipoCertificado"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "mutability": "mutable",
+                "name": "propietario",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "378:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "378:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 73,
+                "mutability": "mutable",
+                "name": "fechaEmision",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "407:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 72,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "407:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 75,
+                "mutability": "mutable",
+                "name": "academia",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "436:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 74,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "436:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "mutability": "mutable",
+                "name": "certificadoSeed",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "462:23:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "462:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "structCertificado",
+            "nodeType": "StructDefinition",
+            "scope": 83,
+            "src": "253:239:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 81,
+              "nodeType": "Block",
+              "src": "512:2:1",
+              "statements": []
+            },
+            "id": 82,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 79,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "509:2:1"
+            },
+            "returnParameters": {
+              "id": 80,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "512:0:1"
+            },
+            "scope": 83,
+            "src": "498:16:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 84,
+        "src": "66:450:1"
+      }
+    ],
+    "src": "32:485:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-01-25T03:58:55.539Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
