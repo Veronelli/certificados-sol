@@ -6,9 +6,9 @@ import {arrayPlus} from "./Arrays.sol";
 
 contract Ministerio {
     // --------------------- Address ---------------------
-    address[] academias;
-    address[] permitidos;
-    address owner;
+    address[] public academias;
+    address[] public permitidos;
+    address public owner;
 
     // --------------------- Mapping ---------------------
     mapping(address => bool) public mapPermitidos;
@@ -59,16 +59,26 @@ contract Ministerio {
         emit eventBajaCuenta(msg.sender, _account);
     }
 
-    function crearAcademia(
-        string memory _nombre,
-        address _director,
-        string memory _localidad
-    ) public {
+    function funcCrearAcademia(string memory _nombre, string memory _localidad)
+        public
+    {
         address direccion = address(
-            new Academia(_nombre, _director, _localidad)
+            new Academia(_nombre, msg.sender, _localidad)
         );
         mapAcademias[msg.sender].push(direccion);
 
         emit eventAltaAcademia(msg.sender, direccion);
+    }
+
+    function funcAutorizarCuenta(address _address) public isPermitido {
+        permitidos.push(_address);
+    }
+
+    function funcAcademias() public view returns (address[] memory) {
+        return academias;
+    }
+
+    function funcPermitido() public view returns (address[] memory) {
+        return permitidos;
     }
 }

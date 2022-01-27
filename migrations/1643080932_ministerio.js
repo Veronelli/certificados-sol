@@ -1,7 +1,7 @@
 const Arrays = artifacts.require("arrayPlus");
 const Ministerio = artifacts.require("Ministerio");
-const Academia = artifacts.require("Academia");
-const Certificado = artifacts.require("Certificado");
+// const Academia = artifacts.require("Academia");
+// const Certificado = artifacts.require("Certificado");
 
 module.exports = function (_deployer, network) {
   // Use deployer to state migration tasks.
