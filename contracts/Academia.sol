@@ -2,12 +2,17 @@
 pragma solidity ^0.8.0;
 
 contract Academia {
-    string nombreAcademia;
-    address[] permitidos;
-    string localidad;
+    string public nombreAcademia;
+    address[] public permitidos;
+    string public localidad;
 
     bool verificado;
     address[] alumnos;
+
+    // --------------------- Access array ---------------------
+    function accPermitido() public view returns (address[] memory) {
+        return permitidos;
+    }
 
     // --------------------- Events ---------------------
     event eventAcademiaCreada(address permitido, address contrato);
@@ -23,4 +28,6 @@ contract Academia {
 
         emit eventAcademiaCreada(_permitidos, address(this));
     }
+
+    // --------------------- Functions ---------------------
 }

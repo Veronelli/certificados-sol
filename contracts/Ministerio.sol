@@ -15,6 +15,15 @@ contract Ministerio {
     mapping(address => Certificado[]) public mapCertificados;
     mapping(address => address[]) public mapAcademias;
 
+    // --------------------- Access Mapping ---------------------
+    function accMapAcademias(address _address)
+        public
+        view
+        returns (address[] memory)
+    {
+        return mapAcademias[_address];
+    }
+
     // --------------------- Events ---------------------
     event eventContractoCreado(address creado);
     event eventAltaCuenta(address habilitador, address habilitado);
@@ -66,6 +75,7 @@ contract Ministerio {
             new Academia(_nombre, msg.sender, _localidad)
         );
         mapAcademias[msg.sender].push(direccion);
+        academias.push(direccion);
 
         emit eventAltaAcademia(msg.sender, direccion);
     }
@@ -78,7 +88,7 @@ contract Ministerio {
         return academias;
     }
 
-    function funcPermitido() public view returns (address[] memory) {
+    function funcPermitidos() public view returns (address[] memory) {
         return permitidos;
     }
 }
