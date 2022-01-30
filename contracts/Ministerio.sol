@@ -52,6 +52,13 @@ contract Ministerio {
         emit eventContractoCreado(owner);
     }
 
+    // --------------------- Internal Function ---------------------
+    function remove(uint256 index) internal {
+        for (uint256 i = index; i < permitidos.length - 1; i++) {
+            permitidos[i] = permitidos[i + 1];
+        }
+    }
+
     // --------------------- Function ---------------------
     function altaCuenta(address _account) public isPermitido {
         mapPermitidos[_account] = true;
@@ -63,7 +70,8 @@ contract Ministerio {
     function bajaCuenta(address _account) public isPermitido {
         mapPermitidos[_account] = false;
         uint256 index = permitidos.findIndex(_account);
-        delete permitidos[index];
+        remove(index);
+        permitidos.pop();
 
         emit eventBajaCuenta(msg.sender, _account);
     }

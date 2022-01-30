@@ -47,13 +47,32 @@ contract("Ministerio", async () => {
     assert.notEqual(this.accounts[5], false);
   });
 
+  it("delete permitir", async () => {
+    const permitidos1 = await this.ministerio.funcPermitidos();
+    await this.ministerio.bajaCuenta(this.accounts[3]);
+    await this.ministerio.bajaCuenta(this.accounts[4]);
+    const permitidos2 = await this.ministerio.funcPermitidos();
+
+    console.log(permitidos2);
+  });
+
   it("add academias", async () => {
-    const mock = { nombre: "UNA", localidad: "Buenos Aires" };
-    await this.ministerio.funcCrearAcademia(mock.nombre, mock.localidad);
+    const mock = [
+      { nombre: "UNA", localidad: "Buenos Aires" },
+      { nombre: "UBA", localidad: "Buenos Aires" },
+    ];
+
+    // Se crea nuevas acadeamias con distinatas cuentas
+    await this.ministerio.funcCrearAcademia(mock[0].nombre, mock[0].localidad);
+    await this.ministerio.funcCrearAcademia(mock[1].nombre, mock[1].localidad, {
+      from: this.accounts[3],
+    });
+
     const cantidadAcademias = await this.ministerio.funcAcademias();
     const addressAcademia = cantidadAcademias[0];
 
-    assert.equal(cantidadAcademias.length, 1);
+    console.log(cantidadAcademias);
+    assert.equal(cantidadAcademias.length, 2);
     const mappingAcademia = await this.ministerio.accMapAcademias(
       this.accounts[0]
     );
@@ -65,8 +84,8 @@ contract("Ministerio", async () => {
     const permitidos = await academia.accPermitido();
     const localidad = await academia.localidad();
 
-    assert.equal(name, mock.nombre);
+    assert.equal(name, mock[0].nombre);
     assert.equal(permitidos[0], this.accounts[0]);
-    assert.equal(localidad, mock.localidad);
+    assert.equal(localidad, mock[0].localidad);
   });
 });
