@@ -14,4 +14,12 @@ library arrayPlus {
         }
         return 0;
     }
+
+    function remove(address[] storage permitidos, uint256 index) internal {
+        for (uint256 i = index; i < permitidos.length - 1; i++) {
+            permitidos[i] = permitidos[i + 1];
+        }
+
+        permitidos.pop();
+    }
 }

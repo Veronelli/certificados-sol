@@ -1,22 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
+enum TipoCertificado {
+    Ingenieria,
+    Doctorado,
+    Master,
+    Comun,
+    Tecnico,
+    Licenciatura,
+    Abogacia
+}
 
 contract Certificado {
-    enum TipoCertificado {
-        Ingenieria,
-        Doctorado,
-        Master,
-        Comun,
-        Tecnico,
-        Licenciatura,
-        Abogacia
-    }
-
     struct StructCertificado {
         string titutlo;
         bool verificado;
         TipoCertificado tipoCertificado;
-        bytes32 propietario;
+        address propietario;
         string fechaEmision;
         address academia;
     }
@@ -26,9 +25,12 @@ contract Certificado {
     StructCertificado[] certificados;
     mapping(address => StructCertificado[]) alumnoCertificado;
 
+    constructor(address _owner) {
+        owner = _owner;
+    }
+
     function createCertificado(
         string memory _titulo,
-        TipoCertificado _tipoCertificado,
         address _alumno,
         address _academia
     ) public {}

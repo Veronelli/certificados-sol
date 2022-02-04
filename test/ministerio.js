@@ -20,6 +20,15 @@ contract("Ministerio", async () => {
   });
 
   it("migrate deployed successfully", async () => {
+    // address certificate storage
+    const addressCertificado = await this.ministerio.contractCertificado();
+
+    assert.notEqual(addressCertificado, null);
+    assert.notEqual(addressCertificado, undefined);
+    assert.notEqual(addressCertificado, 0x0);
+    assert.notEqual(addressCertificado, "");
+
+    // address contract
     assert.notEqual(this.address, null);
     assert.notEqual(this.address, undefined);
     assert.notEqual(this.address, 0x0);
@@ -50,8 +59,11 @@ contract("Ministerio", async () => {
   it("delete permitir", async () => {
     const permitidos1 = await this.ministerio.funcPermitidos();
     await this.ministerio.bajaCuenta(this.accounts[3]);
-    await this.ministerio.bajaCuenta(this.accounts[4]);
+    await this.ministerio.bajaCuenta(this.accounts[5]);
     const permitidos2 = await this.ministerio.funcPermitidos();
+
+    assert.equal(permitidos2.length, 2);
+    assert.notEqual(permitidos2.length, permitidos1.length);
   });
 
   it("add academias", async () => {
@@ -84,5 +96,25 @@ contract("Ministerio", async () => {
     assert.equal(name, mock[0].nombre);
     assert.equal(permitidos[0], this.accounts[0]);
     assert.equal(localidad, mock[0].localidad);
+  });
+
+  // Test Certificado
+  it("add permitidos address | Academia", async () => {
+    const academiaAddress = await this.ministerio.accMapAcademias(
+      this.accounts[0]
+    );
+    this.academia = await Academia.at(academiaAddress[0], {
+      from: this.accounts[0],
+    });
+    await this.academia.altaCuenta(this.accounts[9]);
+    await this.academia.altaCuenta(this.accounts[8]);
+    await this.academia.altaCuenta(this.accounts[7]);
+
+    const permitidos1 = await this.academia.accPermitido();
+
+    assert.equal(permitidos1[0], this.accounts[0]);
+    assert.equal(permitidos1[1], this.accounts[9]);
+    assert.equal(permitidos1[2], this.accounts[8]);
+    assert.equal(permitidos1[3], this.accounts[7]);
   });
 });

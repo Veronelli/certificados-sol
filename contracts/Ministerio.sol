@@ -9,6 +9,7 @@ contract Ministerio {
     address[] public academias;
     address[] public permitidos;
     address public owner;
+    address public contractCertificado;
 
     // --------------------- Mapping ---------------------
     mapping(address => bool) public mapPermitidos;
@@ -48,14 +49,10 @@ contract Ministerio {
         mapPermitidos[owner] = true;
         permitidos.push(owner);
 
-        emit eventContractoCreado(owner);
-    }
+        address _contractCertificado = address(new Certificado(msg.sender));
+        contractCertificado = _contractCertificado;
 
-    // --------------------- Internal Function ---------------------
-    function remove(uint256 index) internal {
-        for (uint256 i = index; i < permitidos.length - 1; i++) {
-            permitidos[i] = permitidos[i + 1];
-        }
+        emit eventContractoCreado(owner);
     }
 
     // --------------------- Function ---------------------
@@ -69,8 +66,7 @@ contract Ministerio {
     function bajaCuenta(address _account) public isPermitido {
         mapPermitidos[_account] = false;
         uint256 index = permitidos.findIndex(_account);
-        remove(index);
-        permitidos.pop();
+        permitidos.remove(index);
 
         emit eventBajaCuenta(msg.sender, _account);
     }

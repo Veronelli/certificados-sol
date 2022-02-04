@@ -20,6 +20,7 @@ contract Academia {
     address contractMinisterio;
 
     mapping(address => alumno) mapAlumnos;
+    mapping(address => address) alumnoCertificado;
     mapping(address => bool) mapPermitidos;
 
     // --------------------- Access array ---------------------
@@ -48,6 +49,7 @@ contract Academia {
     ) {
         nombreAcademia = _nombreAcademia;
         permitidos.push(_permitidos);
+        mapPermitidos[_permitidos] = true;
         localidad = _localidad;
         contractMinisterio = _contractMinistro;
         emit eventAcademiaCreada(_permitidos, address(this));
@@ -69,8 +71,7 @@ contract Academia {
 
     function bajarCuenta(address _direccion) public isPermitido {
         uint256 index = permitidos.findIndex(_direccion);
-        delete permitidos[index];
-        mapPermitidos[_direccion] = false;
+        permitidos.remove(index);
 
         emit eventBajarCuenta(msg.sender, _direccion);
     }
@@ -79,6 +80,9 @@ contract Academia {
         alumno memory infoAlumno = alumno(block.timestamp, true);
         mapAlumnos[_direccion] = infoAlumno;
         alumnos.push(_direccion);
+
+        address certificadoDireccion = address(new Certificado(msg.sender));
+        alumnoCertificado[msg.sender] = certificadoDireccion;
 
         emit eventRegistrarAlumno(msg.sender, _direccion);
     }
@@ -95,7 +99,10 @@ contract Academia {
         emit eventAltaAlumno(msg.sender, _direccion);
     }
 
-    function emitirCertificado(address _alumno) public {
-        Ministerio ministerio = Ministerio(contractMinisterio);
-    }
+    function agregarCertificado(
+        string memory _titulo,
+        TipoCertificado tipoCertificado,
+        address _alumno,
+        address _academia
+    ) public {}
 }
