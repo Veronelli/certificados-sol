@@ -12,15 +12,24 @@ contract Certificado {
         Abogacia
     }
 
-    struct structCertificado {
+    struct StructCertificado {
         string titutlo;
         bool verificado;
         TipoCertificado tipoCertificado;
         bytes32 propietario;
         string fechaEmision;
         address academia;
-        bytes32 certificadoSeed;
     }
 
-    constructor() {}
+    address owner;
+
+    StructCertificado[] certificados;
+    mapping(address => StructCertificado[]) alumnoCertificado;
+
+    function createCertificado(
+        string memory _titulo,
+        TipoCertificado _tipoCertificado,
+        address _alumno,
+        address _academia
+    ) public {}
 }

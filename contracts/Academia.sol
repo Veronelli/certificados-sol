@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import {arrayPlus} from "./Arrays.sol";
+import "./Ministerio.sol";
 
 contract Academia {
     string public nombreAcademia;
@@ -16,6 +17,8 @@ contract Academia {
     }
 
     address[] alumnos;
+    address contractMinisterio;
+
     mapping(address => alumno) mapAlumnos;
     mapping(address => bool) mapPermitidos;
 
@@ -40,12 +43,13 @@ contract Academia {
     constructor(
         string memory _nombreAcademia,
         address _permitidos,
-        string memory _localidad
+        string memory _localidad,
+        address _contractMinistro
     ) {
         nombreAcademia = _nombreAcademia;
         permitidos.push(_permitidos);
         localidad = _localidad;
-
+        contractMinisterio = _contractMinistro;
         emit eventAcademiaCreada(_permitidos, address(this));
     }
 
@@ -89,5 +93,9 @@ contract Academia {
         mapAlumnos[_direccion].asistencia = true;
 
         emit eventAltaAlumno(msg.sender, _direccion);
+    }
+
+    function emitirCertificado(address _alumno) public {
+        Ministerio ministerio = Ministerio(contractMinisterio);
     }
 }

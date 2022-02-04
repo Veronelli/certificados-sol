@@ -12,7 +12,6 @@ contract Ministerio {
 
     // --------------------- Mapping ---------------------
     mapping(address => bool) public mapPermitidos;
-    mapping(address => Certificado[]) public mapCertificados;
     mapping(address => address[]) public mapAcademias;
 
     // --------------------- Access Mapping ---------------------
@@ -80,7 +79,7 @@ contract Ministerio {
         public
     {
         address direccion = address(
-            new Academia(_nombre, msg.sender, _localidad)
+            new Academia(_nombre, msg.sender, _localidad, address(this))
         );
         mapAcademias[msg.sender].push(direccion);
         academias.push(direccion);

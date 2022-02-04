@@ -52,8 +52,6 @@ contract("Ministerio", async () => {
     await this.ministerio.bajaCuenta(this.accounts[3]);
     await this.ministerio.bajaCuenta(this.accounts[4]);
     const permitidos2 = await this.ministerio.funcPermitidos();
-
-    console.log(permitidos2);
   });
 
   it("add academias", async () => {
@@ -71,7 +69,6 @@ contract("Ministerio", async () => {
     const cantidadAcademias = await this.ministerio.funcAcademias();
     const addressAcademia = cantidadAcademias[0];
 
-    console.log(cantidadAcademias);
     assert.equal(cantidadAcademias.length, 2);
     const mappingAcademia = await this.ministerio.accMapAcademias(
       this.accounts[0]
