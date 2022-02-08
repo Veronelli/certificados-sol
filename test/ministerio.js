@@ -117,4 +117,16 @@ contract("Ministerio", async () => {
     assert.equal(permitidos1[2], this.accounts[8]);
     assert.equal(permitidos1[3], this.accounts[7]);
   });
+
+  it("delete permitidos address | Academia",async()=>{
+    await this.academia.bajarCuenta(this.accounts[8]);
+    await this.academia.bajarCuenta(this.accounts[0]);
+    const permitidos = await this.academia.accPermitido({from:this.accounts[4]});
+
+    assert.equal(permitidos.length,2);
+    assert.equal(permitidos[0],this.accounts[9]);
+    assert.equal(permitidos[1],this.accounts[7]);
+
+  })
+
 });
