@@ -98,7 +98,7 @@ contract("Ministerio", async () => {
     assert.equal(localidad, mock[0].localidad);
   });
 
-  // Test Certificado
+  // Test Academia
   it("add permitidos address | Academia", async () => {
     const academiaAddress = await this.ministerio.accMapAcademias(
       this.accounts[0]
@@ -128,5 +128,47 @@ contract("Ministerio", async () => {
     assert.equal(permitidos[1],this.accounts[7]);
 
   })
+
+  // Alta alumno
+  it("add alumnos mapping | Academia",async()=>{
+    await this.academia.registrarAlumno(this.accounts[6]);
+    await this.academia.registrarAlumno(this.accounts[5]);
+    await this.academia.registrarAlumno(this.accounts[2]);
+    const alumnos = await this.academia.accAlumnos();
+
+    assert.equal(alumnos.length,3);
+    assert.equal(alumnos[0],this.accounts[6]);
+    assert.equal(alumnos[1],this.accounts[5]);
+    assert.equal(alumnos[2],this.accounts[2]);
+  })
+
+  it("unsubscribe alumno", async()=>{
+    await this.academia.bajarAlumno(this.accounts[5]);
+    await this.academia.bajarAlumno(this.accounts[2]);
+
+    // unsubscribed
+    const account1 = await this.academia.getAlumnos(this.accounts[5]);
+    const account2 = await this.academia.getAlumnos(this.accounts[2]);
+    
+    // subscribe
+    const account3 = await this.academia.getAlumnos(this.accounts[6]);
+
+    assert.equal(account1[1],false);
+    assert.equal(account2[1],false);
+    assert.equal(account3[1],true);
+  })
+
+  it("subscribe alumno", async()=>{
+    await this.academia.altaAlumno(this.accounts[5]);
+    await this.academia.altaAlumno(this.accounts[2]);
+
+    const account1 = await this.academia.getAlumnos(this.accounts[5]);
+    const account2 = await this.academia.getAlumnos(this.accounts[2]);
+
+    assert.equal(account1[1],true);
+    assert.equal(account2[1],true);
+  })
+
+  // Test Certificado
 
 });

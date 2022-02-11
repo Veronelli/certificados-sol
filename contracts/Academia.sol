@@ -32,6 +32,10 @@ contract Academia {
         return alumnos;
     }
 
+    function getAlumnos(address _alumnoAddress) public view returns(alumno memory){
+        return mapAlumnos[_alumnoAddress];
+    }
+
     // --------------------- Events ---------------------
     event eventAcademiaCreada(address _permitido, address _contrato);
     event eventAltaCuenta(address _habilitador, address _habilitado);
@@ -99,6 +103,7 @@ contract Academia {
         emit eventAltaAlumno(msg.sender, _direccion);
     }
 
+    // To do and test
     function agregarCertificado(
         string memory _titulo,
         TipoCertificado tipoCertificado,
