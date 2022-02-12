@@ -14,6 +14,7 @@ contract Ministerio {
     // --------------------- Mapping ---------------------
     mapping(address => bool) public mapPermitidos;
     mapping(address => address[]) public mapAcademias;
+    mapping(address => address) public alumnoCertificado;
 
     // --------------------- Access Mapping ---------------------
     function accMapAcademias(address _address)

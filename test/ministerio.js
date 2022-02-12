@@ -1,5 +1,6 @@
 const Ministerio = artifacts.require("Ministerio");
 const Academia = artifacts.require("Academia");
+const Certificado = artifacts.require("Certificado")
 
 const Web3 = require("web3");
 const fs = require("fs");
@@ -169,6 +170,41 @@ contract("Ministerio", async () => {
     assert.equal(account2[1],true);
   })
 
-  // Test Certificado
+  it("add certificado | Academia",async()=>{
+    await this.academia.agregarCertificado("Tecnico en Sistemas",4,this.accounts[3]);
+    await this.academia.agregarCertificado("Programacion en super computadoras",3,this.accounts[3]);
+    await this.academia.agregarCertificado("Liquidacion de sueldos",3,this.accounts[5]);
+
+    // get Certidificado contract
+    const contractCertificado = await this.ministerio.contractCertificado();
+    this.certificado = await Certificado.at(contractCertificado);
+
+    // test third account
+    const student1 = await this.certificado.getAlumnoCertificados(this.accounts[3]);
+    assert.equal(student1.length,2);
+
+    assert.equal(student1[0].titulo,"Tecnico en Sistemas");
+    assert.equal(student1[0].verificado,false);
+    assert.equal(student1[0].tipoCertificado,4);
+    assert.equal(student1[0].propietario,this.accounts[3]);
+    assert.equal(student1[0].academia,await this.academia.getAddressAcademia())
+
+    assert.equal(student1[1].titulo,"Programacion en super computadoras");
+    assert.equal(student1[1].verificado,false);
+    assert.equal(student1[1].tipoCertificado,3);
+    assert.equal(student1[1].propietario,this.accounts[3]);
+    assert.equal(student1[1].academia,await this.academia.getAddressAcademia())
+
+    // .. fiveth account
+    const student2 = await this.certificado.getAlumnoCertificados(this.accounts[5]);
+    assert.equal(student2.length,1);
+
+    assert.equal(student2[0].titulo,"Liquidacion de sueldos");
+    assert.equal(student2[0].verificado,false);
+    assert.equal(student2[0].tipoCertificado,3);
+    assert.equal(student2[0].propietario,this.accounts[5]);
+    assert.equal(student2[0].academia,await this.academia.getAddressAcademia())
+    
+  })
 
 });

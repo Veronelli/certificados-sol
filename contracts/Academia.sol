@@ -7,6 +7,7 @@ contract Academia {
     string public nombreAcademia;
     address[] public permitidos;
     string public localidad;
+    address public ministerioAddress;
 
     using arrayPlus for *;
     bool verificado;
@@ -20,8 +21,11 @@ contract Academia {
     address contractMinisterio;
 
     mapping(address => alumno) mapAlumnos;
-    mapping(address => address) alumnoCertificado;
     mapping(address => bool) mapPermitidos;
+
+    function getAddressAcademia()public view returns(address){
+        return address(this);
+    }
 
     // --------------------- Access array ---------------------
     function accPermitido() public view returns (address[] memory) {
@@ -45,12 +49,15 @@ contract Academia {
     event eventAltaAlumno(address _autorizado, address _alumno);
     event eventBajarAlumno(address _autorizado, address _alumno);
 
+    event eventCertificadoCreado(address _emisor, address _academia, address _alumno);
+
     constructor(
         string memory _nombreAcademia,
         address _permitidos,
         string memory _localidad,
         address _contractMinistro
     ) {
+        ministerioAddress = msg.sender;
         nombreAcademia = _nombreAcademia;
         permitidos.push(_permitidos);
         mapPermitidos[_permitidos] = true;
@@ -59,7 +66,7 @@ contract Academia {
         emit eventAcademiaCreada(_permitidos, address(this));
     }
 
-    // --------------------- Functions ---------------------
+    // --------------------- Modifiers ---------------------
     modifier isPermitido() {
         require(mapPermitidos[msg.sender] == true, "No estas autorizado");
         _;
@@ -85,9 +92,6 @@ contract Academia {
         mapAlumnos[_direccion] = infoAlumno;
         alumnos.push(_direccion);
 
-        address certificadoDireccion = address(new Certificado(msg.sender));
-        alumnoCertificado[msg.sender] = certificadoDireccion;
-
         emit eventRegistrarAlumno(msg.sender, _direccion);
     }
 
@@ -106,8 +110,13 @@ contract Academia {
     // To do and test
     function agregarCertificado(
         string memory _titulo,
-        TipoCertificado tipoCertificado,
-        address _alumno,
-        address _academia
-    ) public {}
+        TipoCertificado _tipoCertificado,
+        address _alumno
+    ) public {
+        Ministerio ministerio = Ministerio(ministerioAddress);
+        Certificado certificado = Certificado(ministerio.contractCertificado());
+        certificado.createCertificado(_titulo,_alumno, _tipoCertificado);
+
+        emit eventCertificadoCreado(msg.sender, address(this), _alumno);
+    }
 }

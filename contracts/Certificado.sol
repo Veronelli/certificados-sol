@@ -12,26 +12,41 @@ enum TipoCertificado {
 
 contract Certificado {
     struct StructCertificado {
-        string titutlo;
+        string titulo;
         bool verificado;
         TipoCertificado tipoCertificado;
         address propietario;
-        string fechaEmision;
+        uint fechaEmision;
         address academia;
     }
 
-    address owner;
+    address ministerioAddress;
 
     StructCertificado[] certificados;
-    mapping(address => StructCertificado[]) alumnoCertificado;
+    mapping(address => StructCertificado[]) alumnoCertificados;
+
+    // --------------------- Variables ---------------------
+    function getAlumnoCertificados(address _direccion)public view returns(StructCertificado[] memory){
+        return alumnoCertificados[_direccion];
+    }
+    function getCertificados()public view returns(StructCertificado[] memory){
+        return certificados;
+    }
 
     constructor(address _owner) {
-        owner = _owner;
+        ministerioAddress = _owner;
     }
 
     function createCertificado(
         string memory _titulo,
         address _alumno,
-        address _academia
-    ) public {}
+        TipoCertificado _tipoCertificado
+    ) public {
+        uint date = block.timestamp;
+
+        address _academiaAddress = msg.sender;
+        StructCertificado memory _certidicado = StructCertificado(_titulo,false,_tipoCertificado,_alumno,date,_academiaAddress);
+        certificados.push(_certidicado);
+        alumnoCertificados[_alumno].push(_certidicado);
+    }
 }
