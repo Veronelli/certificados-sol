@@ -17,7 +17,7 @@ contract Academia {
         bool asistencia;
     }
 
-    address[] alumnos;
+    address[] private alumnos;
     address contractMinisterio;
 
     mapping(address => alumno) mapAlumnos;
@@ -72,6 +72,11 @@ contract Academia {
         _;
     }
 
+    modifier isAlumno(address _direccionAlumno){
+        require(mapAlumnos[_direccionAlumno].asistencia == true,"El alumno no asiste al colegio");
+        _;
+    }
+
     // --------------------- Functions ---------------------
     function altaCuenta(address _direccion) public isPermitido {
         permitidos.push(_direccion);
@@ -112,7 +117,7 @@ contract Academia {
         string memory _titulo,
         TipoCertificado _tipoCertificado,
         address _alumno
-    ) public {
+    ) isAlumno(_alumno) public {
         Ministerio ministerio = Ministerio(ministerioAddress);
         Certificado certificado = Certificado(ministerio.contractCertificado());
         certificado.createCertificado(_titulo,_alumno, _tipoCertificado);
